@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0a0f" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="description" content="Исцеление через принятие" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>Тень</title>
+    <script>
+      // Очистка кэша service worker при загрузке
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.getRegistration().then(registration => {
+            if (registration) {
+              registration.unregister().then(() => {
+                console.log('Service Worker очищен');
+              });
+            }
+          });
+          
+          // Очистка кэша браузера
+          if ('caches' in window) {
+            caches.keys().then(cacheNames => {
+              cacheNames.forEach(cacheName => {
+                caches.delete(cacheName);
+              });
+              console.log('Кэш очищен');
+            });
+          }
+        });
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-CAwTsz9d.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Bf4fEM6C.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
